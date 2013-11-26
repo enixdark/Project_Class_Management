@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TK" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="957fdcd9-c530-41f1-ad72-f1b1461e0b1b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[select diem.masv,diem.mahk,sinhvien.malop,SUM(diemtb)/COUNT(diemtb) as diemtb from sinhvien inner join diem 
+on diem.masv = sinhvien.masv
+group by diem.masv,diem.mahk,sinhvien.malop
+order by diem.mahk]]>
+	</queryString>
+	<field name="masv" class="java.lang.String"/>
+	<field name="mahk" class="java.lang.String"/>
+	<field name="malop" class="java.lang.String"/>
+	<field name="diemtb" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="48c0dcff-c500-4d8e-a019-4ca176b07812" style="Title" x="180" y="0" width="453" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Danh Sách Học Sinh]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="d86c3578-30ad-44cf-a6a8-94e7e0468c95" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="56a936fa-bbbd-491a-a952-d967c8c4ff46" style="Column header" x="0" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[masv]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="deb625ef-8384-4f0d-a211-11415a761a54" style="Column header" x="200" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[mahk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a1ef817e-108c-4d7d-a076-f079828a3645" style="Column header" x="400" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[malop]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5e63907c-2112-4fd6-b767-3c6152be917b" style="Column header" x="600" y="0" width="200" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[diemtb]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="c8b5a448-f149-45de-8fc9-c6ed15fe6aa8" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="53a8bc46-4c28-4bf9-8cc0-69d7458be075" style="Detail" x="0" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{masv}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="885f00a8-c401-4b56-b924-f23626d79a9e" style="Detail" x="200" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{mahk}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="55ef6e76-66a5-4aa8-9154-436e8b160c74" style="Detail" x="400" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{malop}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c9e7dd59-588c-4e49-9dce-63e6824a5b67" style="Detail" x="600" y="0" width="200" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{diemtb}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="460c06b9-820f-4901-9419-594d912db4c4" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="7e0c8072-b74e-460e-ad40-cf176dab5ad3" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="10faa024-c862-48a6-9775-14cecfa45ce4" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="aaa00a20-925c-4a02-9cba-84693a873c43" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="214b3a47-c737-478e-bee7-9cd596f68b33" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
